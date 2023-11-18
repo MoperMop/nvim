@@ -13,5 +13,5 @@ vim.opt.rtp:prepend(lazypath)
 
 
 require("lazy").setup({
-  
+ {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"}, 
 })
