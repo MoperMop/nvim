@@ -26,4 +26,5 @@ lazy.setup({
   },
   {"ThePrimeagen/harpoon", dependencies = { "nvim-lua/plenary.nvim" }},
   "mbbill/undotree",
+  "tpope/vim-fugitive",
 })
