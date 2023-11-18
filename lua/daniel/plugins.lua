@@ -12,6 +12,16 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 
-require("lazy").setup({
- {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"}, 
+local status_ok, lazy = pcall(require, "lazy")
+if not status_ok then
+  vim.notify("had a problem while installing plugins, please restart")
+  return
+end
+
+lazy.setup({
+  {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"}, 
+  {
+    'nvim-telescope/telescope.nvim', tag = '0.1.4',
+    dependencies = { 'nvim-lua/plenary.nvim' }
+  }
 })
