@@ -25,4 +25,5 @@ lazy.setup({
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
   {"ThePrimeagen/harpoon", dependencies = { "nvim-lua/plenary.nvim" }},
+  "mbbill/undotree",
 })
