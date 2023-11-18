@@ -1,5 +1,6 @@
 require("mason").setup({})
 local lspconfig = require("lspconfig")
+local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 require("mason-lspconfig").setup({
   ensure_installed = {
     "tsserver",
@@ -8,7 +9,9 @@ require("mason-lspconfig").setup({
   },
   handlers = {
     function(server)
-      lspconfig[server].setup({})
+      lspconfig[server].setup({
+        capabilites = lsp_capabilities
+      })
     end
   },
 })
@@ -34,4 +37,25 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
     vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
   end
+})
+
+
+local cmp = require("cmp")
+local luasnip = require("luasnip")
+cmp.setup({
+  mapping = cmp.mapping.preset.insert({
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
+    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+    ['<C-j>'] = function() luasnip.jump(1) end,
+    ['<C-k>'] = function() luasnip.jump(-1) end,
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = "luasnip" },
+  }),
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
+  },
 })
