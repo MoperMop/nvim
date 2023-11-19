@@ -4,9 +4,6 @@ vim.opt.rnu = true
 vim.opt.scrolloff = 8
 
 vim.opt.termguicolors = true
-vim.cmd.colorscheme = "default"
-vim.api.nvim_set_hl(0, "Normal", { bg = "black" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#222222" })
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
