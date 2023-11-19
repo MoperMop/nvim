@@ -46,8 +46,16 @@ lazy.setup({
 	'hrsh7th/cmp-cmdline',
   "hrsh7th/nvim-cmp",
   "hrsh7th/cmp-nvim-lsp",
+
   'saadparwaiz1/cmp_luasnip',
   "L3MON4D3/LuaSnip",
+
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {}, -- this is equalent to setup({}) function
+  },
+  "windwp/nvim-ts-autotag",
 
 
   {
