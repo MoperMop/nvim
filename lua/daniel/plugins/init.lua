@@ -65,6 +65,9 @@ lazy.setup({
   },
 
 
+  "nvimtools/none-ls.nvim",
+
+
   {
     'numToStr/Comment.nvim',
     opts = {},
@@ -107,6 +110,7 @@ for _, config in ipairs {
   "telescope",
   "treesitter",
   "undotree",
+  "none-ls",
 } do
   require("daniel.plugins." .. config)
 end
