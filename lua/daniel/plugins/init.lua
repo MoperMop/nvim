@@ -18,10 +18,21 @@ if not status_ok then
   return
 end
 
-lazy.setup({
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+local function config(file)
+  return function() require("daniel.plugins." .. file) end
+end
 
-  "HiPhish/rainbow-delimiters.nvim",
+lazy.setup({
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = config("treesitter"),
+  },
+
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+    config = config("rainbow-delimiters"),
+  },
 
 
   "nvim-tree/nvim-web-devicons",
@@ -30,13 +41,21 @@ lazy.setup({
   {
     "nvim-telescope/telescope.nvim",
     tag = '0.1.4',
-    dependencies = { "nvim-lua/plenary.nvim" }
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = config("telescope"),
   },
 
-  { "ThePrimeagen/harpoon", dependencies = { "nvim-lua/plenary.nvim" } },
+  {
+    "ThePrimeagen/harpoon",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = config("harpoon"),
+  },
 
 
-  "mbbill/undotree",
+  {
+    "mbbill/undotree",
+    config = function() vim.keymap.set("n", "<leader>u", ":UndotreeToggle<CR>") end,
+  },
 
 
   "tpope/vim-fugitive",
@@ -47,36 +66,50 @@ lazy.setup({
   },
 
 
-  "williamboman/mason.nvim",
-  "williamboman/mason-lspconfig.nvim",
-  "neovim/nvim-lspconfig",
-
-	'hrsh7th/cmp-buffer',
-	'hrsh7th/cmp-path',
-	'hrsh7th/cmp-cmdline',
-  "hrsh7th/nvim-cmp",
-  "hrsh7th/cmp-nvim-lsp",
-
-  'saadparwaiz1/cmp_luasnip',
   {
-    "L3MON4D3/LuaSnip",
-    -- install jsregexp (optional!).
-    build = "make install_jsregexp",
-    dependencies = { "rafamadriz/friendly-snippets" },
+    "williamboman/mason.nvim",
+    dependencies = {
+      "williamboman/mason-lspconfig.nvim",
+      "neovim/nvim-lspconfig",
+
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      "hrsh7th/nvim-cmp",
+      "hrsh7th/cmp-nvim-lsp",
+
+      'saadparwaiz1/cmp_luasnip',
+      {
+        "L3MON4D3/LuaSnip",
+        -- install jsregexp (optional!).
+        build = "make install_jsregexp",
+        dependencies = { "rafamadriz/friendly-snippets" },
+      },
+    },
+    config = config("lsp"),
   },
 
 
-  "nvimtools/none-ls.nvim",
-
-
   {
-    'numToStr/Comment.nvim',
-    opts = {},
-    lazy = false,
+    "nvimtools/none-ls.nvim",
+    config = config("none-ls"),
   },
+
+
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
-    opts = { enable_autocmd = false }
+    opts = { enable_autocmd = false },
+    config = function()
+      require("Comment").setup {
+        pre_hook = require('ts_context_commentstring.integrations.comment_nvim')
+          .create_pre_hook(),
+      }
+    end,
+    dependencies = {
+      'numToStr/Comment.nvim',
+      opts = {},
+      lazy = false,
+    },
   },
 
 
@@ -84,6 +117,7 @@ lazy.setup({
     'windwp/nvim-autopairs',
     event = "InsertEnter",
     opts = {}, -- this is equalent to setup({}) function
+    config = config("auto-pairs"),
   },
   "windwp/nvim-ts-autotag",
 
@@ -96,22 +130,6 @@ lazy.setup({
     lazy = false,
     priority = 1000,
     opts = {},
-    build = ":colorscheme tokyonight",
+    config = function() vim.cmd.colorscheme("tokyonight") end,
   },
 })
-
-
-for _, config in ipairs {
-  "auto-pairs",
-  "colorscheme",
-  "comment",
-  "harpoon",
-  "lsp",
-  "rainbow-delimiters",
-  "telescope",
-  "treesitter",
-  "undotree",
-  "none-ls",
-} do
-  require("daniel.plugins." .. config)
-end
