@@ -24,6 +24,9 @@ lazy.setup({
   "HiPhish/rainbow-delimiters.nvim",
 
 
+  "nvim-tree/nvim-web-devicons",
+
+
   {
     "nvim-telescope/telescope.nvim",
     tag = '0.1.4',
