@@ -38,6 +38,11 @@ lazy.setup({
 
   "tpope/vim-fugitive",
 
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = {},
+  },
+
 
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
