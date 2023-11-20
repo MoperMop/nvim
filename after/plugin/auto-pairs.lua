@@ -8,7 +8,7 @@ cmp.event:on(
 
 
 local npairs = require("nvim-autopairs")
--- local Rule = require('nvim-autopairs.rule')
+local Rule = require('nvim-autopairs.rule')
 
 npairs.setup({
   check_ts = true,
@@ -30,6 +30,11 @@ npairs.setup({
     highlight = 'Search',
     highlight_grey='Comment'
   },
+})
+
+
+npairs.add_rules({
+  Rule("/*", "*/", {"javascript", "typescript"}),
 })
 
 
