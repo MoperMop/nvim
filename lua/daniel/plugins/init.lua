@@ -87,3 +87,18 @@ lazy.setup({
     build = ":colorscheme tokyonight",
   },
 })
+
+
+for _, config in ipairs {
+  "auto-pairs",
+  "colorscheme",
+  "comment",
+  "harpoon",
+  "lsp",
+  "rainbow-delimiters",
+  "telescope",
+  "treesitter",
+  "undotree",
+} do
+  require("daniel.plugins." .. config)
+end
