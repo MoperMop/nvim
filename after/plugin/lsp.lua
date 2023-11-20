@@ -46,8 +46,20 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
     ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-    ['<C-j>'] = function() luasnip.jump(1) end,
-    ['<C-k>'] = function() luasnip.jump(-1) end,
+    ['<C-j>'] = cmp.mapping(function(fallback)
+      if luasnip.jumpable(1) then
+        luasnip.jump(1)
+      else
+        fallback()
+      end
+    end, {"i", "s"}),
+    ['<C-k>'] = cmp.mapping(function(fallback)
+      if luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, {"i", "s"}),
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },

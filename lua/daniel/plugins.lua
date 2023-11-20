@@ -20,21 +20,23 @@ end
 
 lazy.setup({
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+
   "HiPhish/rainbow-delimiters.nvim",
+
 
   {
     "nvim-telescope/telescope.nvim",
     tag = '0.1.4',
     dependencies = { "nvim-lua/plenary.nvim" }
   },
+
   { "ThePrimeagen/harpoon", dependencies = { "nvim-lua/plenary.nvim" } },
+
 
   "mbbill/undotree",
 
-  "tpope/vim-fugitive",
 
-  "tpope/vim-surround",
-  "tpope/vim-repeat",
+  "tpope/vim-fugitive",
 
 
   "williamboman/mason.nvim",
@@ -48,7 +50,23 @@ lazy.setup({
   "hrsh7th/cmp-nvim-lsp",
 
   'saadparwaiz1/cmp_luasnip',
-  "L3MON4D3/LuaSnip",
+  {
+    "L3MON4D3/LuaSnip",
+    -- install jsregexp (optional!).
+    build = "make install_jsregexp"
+  },
+
+
+  {
+    'numToStr/Comment.nvim',
+    opts = {},
+    lazy = false,
+  },
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    opts = { enable_autocmd = false }
+  },
+
 
   {
     'windwp/nvim-autopairs',
@@ -56,6 +74,9 @@ lazy.setup({
     opts = {}, -- this is equalent to setup({}) function
   },
   "windwp/nvim-ts-autotag",
+
+  "tpope/vim-surround",
+  "tpope/vim-repeat",
 
 
   {
