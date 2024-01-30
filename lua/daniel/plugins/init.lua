@@ -35,13 +35,25 @@ lazy.setup({
   },
 
 
-  "nvim-tree/nvim-web-devicons",
-
+  -- {
+  --   "nvim-tree/nvim-tree.lua",
+  --   version = "*",
+  --   lazy = false,
+  --   dependencies = { "nvim-tree/nvim-web-devicons" },
+  --   config = config("nvim-tree"),
+  -- },
 
   {
     "nvim-telescope/telescope.nvim",
     tag = '0.1.4',
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      {
+        "nvim-telescope/telescope-media-files.nvim",
+        dependencies = { "nvim-lua/popup.nvim" },
+      }
+    },
     config = config("telescope"),
   },
 

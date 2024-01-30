@@ -35,6 +35,9 @@ npairs.setup({
 
 npairs.add_rules({
   Rule("/*", "*/", {"javascript", "typescript"}),
+  Rule("/**", "*/", {"javascript", "typescript"})
+    :only_cr()
+    :replace_map_cr(function () return "<cr><bs><bs><C-{>O" end),
 })
 
 
