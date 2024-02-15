@@ -24,6 +24,8 @@ vim.keymap.set("n", "<A-l>", "<C-w>l")
 vim.keymap.set("n", "<A-j>", "<C-w>j")
 vim.keymap.set("n", "<A-k>", "<C-w>k")
 
+vim.keymap.set("t", "<C-[>", "<C-\\><C-n>")
+
 
 vim.keymap.set("n", "<leader>y", "\"+y")
 vim.keymap.set("v", "<leader>y", "\"+y")
