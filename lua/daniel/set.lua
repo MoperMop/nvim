@@ -29,3 +29,7 @@ vim.opt.undofile = true
 
 
 vim.opt.updatetime = 50
+
+
+vim.opt.shellcmdflag = "-c"
+vim.opt.shellxquote = ""
