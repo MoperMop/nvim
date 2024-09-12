@@ -9,6 +9,7 @@ cmp.event:on(
 
 local npairs = require("nvim-autopairs")
 local Rule = require('nvim-autopairs.rule')
+local cond = require("nvim-autopairs.conds")
 
 npairs.setup({
   check_ts = true,
@@ -33,11 +34,15 @@ npairs.setup({
 })
 
 
+local js = {"javascript", "typescript", "javascriptreact", "typescriptreact"};
 npairs.add_rules({
-  Rule("/*", "*/", {"javascript", "typescript"}),
-  Rule("/**", "*/", {"javascript", "typescript"})
+  Rule("/*", "*/", js)
+    :with_move(cond.not_before_text("/*")),
+  Rule("/**", "*/", js)
     :only_cr()
     :replace_map_cr(function () return "<cr><bs><bs><C-{>O" end),
+  Rule("|", "|", "rust")
+    :with_move(),
 })
 
 
