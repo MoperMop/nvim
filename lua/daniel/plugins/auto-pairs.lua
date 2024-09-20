@@ -43,6 +43,8 @@ npairs.add_rules({
     :replace_map_cr(function () return "<cr><bs><bs><C-{>O" end),
   Rule("|", "|", "rust")
     :with_move(),
+  Rule("```", "```", {"rust", "markdown"})
+    :with_cr(),
 })
 
 
