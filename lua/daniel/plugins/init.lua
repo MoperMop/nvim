@@ -102,10 +102,10 @@ lazy.setup({
   },
 
 
-  {
-    "nvimtools/none-ls.nvim",
-    config = config("none-ls"),
-  },
+  -- {
+  --   "nvimtools/none-ls.nvim",
+  --   config = config("none-ls"),
+  -- },
 
 
   {
