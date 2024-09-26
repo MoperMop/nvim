@@ -144,4 +144,6 @@ lazy.setup({
     opts = {},
     config = function() vim.cmd.colorscheme("tokyonight") end,
   },
+
+  "tpope/vim-obsession",
 })
