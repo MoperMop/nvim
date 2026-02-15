@@ -9,6 +9,11 @@ require("mason-lspconfig").setup({
     "html",
     "emmet_language_server",
   },
+  automatic_enable = {
+    exclude = {
+      "harper_ls",
+    },
+  },
   handlers = {
     function(server)
       lspconfig[server].setup({

@@ -146,4 +146,26 @@ lazy.setup({
   },
 
   "tpope/vim-obsession",
+
+  {
+    "klen/nvim-config-local",
+    config = function()
+      require('config-local').setup {
+        -- Default options (optional)
+
+        -- Config file patterns to load (lua supported)
+        config_files = { ".nvim.lua", ".nvimrc", ".exrc" },
+
+        -- Where the plugin keeps files data
+        hashfile = vim.fn.stdpath("data") .. "/config-local",
+
+        -- Create autocommands (VimEnter, DirectoryChanged)
+        autocommands_create = true,
+        -- Create commands (ConfigLocalSource, ConfigLocalEdit, ConfigLocalTrust, ConfigLocalDeny)
+        commands_create = true,
+        silent = false,         -- Disable plugin messages (Config loaded/denied)
+        lookup_parents = false, -- Lookup config files in parent directories
+      }
+    end
+  },
 })
