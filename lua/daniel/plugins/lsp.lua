@@ -1,6 +1,4 @@
 require("mason").setup({})
-local lspconfig = require("lspconfig")
-local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 require("mason-lspconfig").setup({
   ensure_installed = {
     "ts_ls",
@@ -8,20 +6,14 @@ require("mason-lspconfig").setup({
     "cssls",
     "html",
     "emmet_language_server",
+    "harper_ls",
   },
   automatic_enable = {
     exclude = {
       "harper_ls",
     },
   },
-  handlers = {
-    function(server)
-      lspconfig[server].setup({
-        capabilites = lsp_capabilities
-      })
-    end
-  },
-})
+});
 
 
 vim.api.nvim_create_autocmd('LspAttach', {

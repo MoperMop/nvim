@@ -77,7 +77,6 @@ treesitter.install {
   "git_config",
   "diff",
   "json",
-  "jsonc",
   "markdown",
 }
 
